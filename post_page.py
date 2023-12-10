@@ -1,15 +1,13 @@
 import streamlit as st
 
-from db_fxns import create_table, add_data, view_all_tasks,view_all_task_names,get_task_by_task_name
+from db_fxns import create_table, add_data, view_all_tasks,view_all_task_names,get_task_by_task_name,edit_task_data
 
 def run_task_page():
     create_table()
     submenu = st.sidebar.selectbox("SubMenu",['Add Task', 'Edit Task'])
-
-    col1, col2 = st.columns(2)
-
     if submenu == 'Add Task':
         st.subheader("Add Task")
+        col1, col2 = st.columns(2)
         with col1:
             task_doer = st.text_input("Task Doer")
             task_name = st.text_area("Task")
@@ -47,4 +45,5 @@ def run_task_page():
                 new_task_due_date = st.date_input(task_due_date)
     
             if st.button("Update Task"):
+                edit_task_data(new_task_doer,new_task_name,new_task_status,new_task_due_date,task_doer,task_name,task_status,task_due_date)
                 st.success("Added:: {}".format(task_name))

@@ -1,5 +1,6 @@
 import streamlit as st
 from post_page import run_task_page
+from manage_page import run_manage_page
 
 def main():
     st.title("Simple CRUD Task List App")
@@ -14,6 +15,7 @@ def main():
         run_task_page()
     elif choice == "Manage":
         st.subheader("Manage Task")
+        run_manage_page()
     else:
         st.subheader("About")
 
