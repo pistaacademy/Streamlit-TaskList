@@ -14,3 +14,14 @@ def view_all_tasks():
     c.execute('SELECT * FROM taskstable')
     data = c.fetchall()
     return data
+
+
+def view_all_task_names():
+    c.execute('SELECT DISTINCT task_name FROM taskstable')
+    data = c.fetchall()
+    return data
+
+def get_task_by_task_name(task_name):
+    c.execute('SELECT * FROM taskstable WHERE task_name="{}"'.format(task_name))
+    data = c.fetchall()
+    return data

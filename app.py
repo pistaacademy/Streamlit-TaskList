@@ -10,7 +10,7 @@ def main():
     if choice == "Home":
         st.subheader("Home")
     elif choice == "Task":
-        st.subheader("Post Task")
+        st.subheader("Post&Update Task")
         run_task_page()
     elif choice == "Manage":
         st.subheader("Manage Task")
