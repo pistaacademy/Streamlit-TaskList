@@ -1,6 +1,7 @@
 import streamlit as st
 from post_page import run_task_page
 from manage_page import run_manage_page
+from home_page import run_home_page
 
 def main():
     st.title("Simple CRUD Task List App")
@@ -9,7 +10,7 @@ def main():
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Home":
-        st.subheader("Home")
+        run_home_page()
     elif choice == "Task":
         st.subheader("Post&Update Task")
         run_task_page()

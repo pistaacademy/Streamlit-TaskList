@@ -26,6 +26,12 @@ def get_task_by_task_name(task_name):
     data = c.fetchall()
     return data
 
+def get_task_by_task_doer(task_doer):
+    c.execute('SELECT * FROM taskstable WHERE task_doer="{}"'.format(task_doer))
+    data = c.fetchall()
+    return data
+
+
 def edit_task_data(new_task_doer,new_task_name,new_task_status,new_task_due_date,task_doer,task_name,task_status,task_due_date):
 	c.execute("UPDATE taskstable SET task_doer=?, ask_name=?, task_status=?, task_due_date=? WHERE task_doer=? and task_name=? and task_status=? and task_due_date=?",(new_task_doer,new_task_name,new_task_status,new_task_due_date,task_doer,task_name,task_status,task_due_date))
 	conn.commit()
