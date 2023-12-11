@@ -27,3 +27,24 @@ def run_manage_page():
             result2 = view_all_tasks()
             new_df = pd.DataFrame(result2, columns=['Task Doer', 'Task', 'Task Status', 'Task Due Date'])
             st.dataframe(new_df)
+    else:
+        st.subheader("Analytics")
+        result = view_all_tasks()
+        df = pd.DataFrame(result, columns=['Task Doer', 'Task', 'Task Status', 'Task Due Date'])
+        with st.expander("View All Task"):
+            st.dataframe(df)
+        with st.expander("Task Doer Stats"):
+            st.dataframe(df['Task Doer'].value_counts())
+            new_df = df['Task Doer'].value_counts().to_frame()
+            new_df = new_df.reset_index()
+            st.dataframe(new_df)
+
+            p1 = px.pie(new_df, names='index', values='Task Doer')
+            st.plotly_chart(p1)
+        with st.expander("Task Stats"):
+            task_df = df['Task'].value_counts().to_frame()
+            task_df = task_df.reset_index()
+            st.dataframe(task_df)
+
+            p2 = px.pie(task_df, names='index', values='Task')
+            st.plotly_chart(p2)
